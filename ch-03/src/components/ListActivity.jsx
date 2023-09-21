@@ -2,10 +2,26 @@ import { useState } from "react";
 import data from "../data/data.json"
 import PropTypes from "prop-types"
 import Delete from "./Delete";
+import ButtonList from "./ButtonList";
 
 export default function ListActivity({ onEdit }) {
 
     const [items, setItems] = useState(data);
+
+    const handleButtonTodo = () => {
+        const updatedItems = items.filter((item) => item.complete !== true);
+        setItems(updatedItems);
+    };
+
+    const handleButtonDone = () => {
+        const updatedItems = items.filter((item) => item.complete !== false);
+        setItems(updatedItems);
+        
+    };
+
+    const handleButtonAll = () => {
+        window.location.reload(true)
+    };
 
     // fungsi button delete mulai
     const handleRemoveItem = (id) => {
@@ -56,9 +72,9 @@ export default function ListActivity({ onEdit }) {
     }
     // fungsi remove task done selesai
 
-
     return (
         <>
+            <ButtonList onHandleAll={handleButtonAll} onHandleDone={handleButtonDone} onHandleTodo={handleButtonTodo} />
             {items.map((item) => (
                 <div key={item.listToDo} className="p-3 border-2 my-5 border-slate-200 rounded-md text-lg font-medium">
                     <div key={(item.id)} className="flex justify-between">
