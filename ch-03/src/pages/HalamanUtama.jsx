@@ -3,7 +3,6 @@ import FormSearch from "../components/FormSearch"
 import HeaderList from "../components/HeaderList"
 import ButtonList from "../components/ButtonList"
 import ListActivity from "../components/ListActivity"
-import Delete from "../components/Delete"
 import Helmi from "../components/Helmi"
 
 import toDoList from "../data/data.json"
@@ -23,6 +22,11 @@ export default function HalamanUtama() {
         }
     };
     // fungsi edit to-do-list selesai
+
+    // fungsi delete all mulai
+
+    // fungsi delete all selesai
+    
     return (
         <>
             <div className="my-6 p-4 border-4 border-slate-300 w-[850px] mx-auto">
@@ -48,7 +52,7 @@ export default function HalamanUtama() {
                 {/* List Activity Selesai */}
 
                 {/* Button Delete Mulai */}
-                <Delete />
+                
                 {/* Button Delete Selesai */}
 
                 {/* Footer Mulai */}

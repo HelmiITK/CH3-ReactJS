@@ -1,6 +1,7 @@
 import { useState } from "react";
 import data from "../data/data.json"
 import PropTypes from "prop-types"
+import Delete from "./Delete";
 
 export default function ListActivity({ onEdit }) {
 
@@ -27,16 +28,34 @@ export default function ListActivity({ onEdit }) {
     }
     // fungsi button checkbox selesai
 
-    // fungsi edit item list mulai
-    // const handleEditItem = (id) => {
-    //     const newText = prompt('Edit item:', items[id].task);
-    //     if (newText !== null) {
-    //         const updatedText = [...items];
-    //         updatedText[id].task = newText;
-    //         setItems(updatedText);
-    //     }
-    // };
-    // fungsi edit item list selesai
+
+    // fungsi remove All items mulai
+    const clearAllItems = () => {
+        const confirmRemoveAllItems = window.confirm("Yakin mau hapus semua?");
+
+        if (confirmRemoveAllItems) {
+            setItems([]);
+            console.log("Datamu sudah dihapus semua");
+        } else (
+            alert("wkwkw ngga jdi dihapus")
+        )
+    };
+    // fungsi remove All items selesai
+
+    // fungsi remove task done mulai
+    const ClearDoneTask = () => {
+        const confirmRemoveDoneTask = window.confirm("dihapus kh ini yg sudah done?");
+
+        if (confirmRemoveDoneTask) {
+            const updatedItems = items.filter((item) => item.complete !== true);
+            setItems(updatedItems);
+            console.log("Semua data item Listmu telah dihapus permanent");
+        } else (
+            console.log("Item list batal dihapus")
+        )
+    }
+    // fungsi remove task done selesai
+
 
     return (
         <>
@@ -63,6 +82,7 @@ export default function ListActivity({ onEdit }) {
                     </div>
                 </div>
             ))}
+            <Delete onDeleteAll={clearAllItems} onClearDoneTask={ClearDoneTask} />
         </>
     )
 }
