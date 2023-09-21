@@ -6,10 +6,26 @@ import ListActivity from "../components/ListActivity"
 import Delete from "../components/Delete"
 import Helmi from "../components/Helmi"
 
+import toDoList from "../data/data.json"
+import { useState } from "react"
+
 export default function HalamanUtama() {
+    const [todos, setTodos] = useState(toDoList);
+
+    // fungsi edit to-do-list mulai
+    const editTodo = (index) => {
+        const newText = prompt("Edit todo:", todos[index-1].task);
+        if (newText !== null) {
+            const updatedTodos = [...todos];
+            updatedTodos[index-1].task = newText;
+            setTodos(updatedTodos);
+            console.log(`Data item diubah menjadi: "${newText}"`)
+        }
+    };
+    // fungsi edit to-do-list selesai
     return (
         <>
-            <div className="mt-6 p-4 border-4 border-slate-300 w-[850px] mx-auto">
+            <div className="my-6 p-4 border-4 border-slate-300 w-[850px] mx-auto">
 
                 {/* Header Search Mulai */}
                 <HeaderSearch />
@@ -28,7 +44,7 @@ export default function HalamanUtama() {
                 {/* Button List Selesai */}
 
                 {/* List Activity Mulai */}
-                <ListActivity />
+                <ListActivity onEdit={editTodo} />
                 {/* List Activity Selesai */}
 
                 {/* Button Delete Mulai */}
@@ -43,3 +59,4 @@ export default function HalamanUtama() {
         </>
     )
 }
+
